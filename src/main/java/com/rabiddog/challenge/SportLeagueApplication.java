@@ -27,7 +27,7 @@ public class SportLeagueApplication {
                     .getLeagueTable()
                     .printLeagueStandings(System.out);
         } catch (IOException e) {
-            System.err.printf("There was a problem reading the file from the path %s%n", args[0]);
+            System.err.printf("There was a problem reading the file from the path %s", args[0]);
         }
 
     }
