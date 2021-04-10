@@ -9,6 +9,11 @@ public class Team implements Comparable<Team>{
 
     private String name;
 
+    /***
+     *
+     * @param name the name of the team
+     * @return a new instance of Team
+     */
     public static Team createInstance(String name){
         var output = new Team();
         output.name = name;

@@ -10,6 +10,11 @@ public class SportLeague {
     private List<SportMatch> matches = new ArrayList<>();
     private LeagueTable leagueTable = new LeagueTable();
 
+    /***
+     *
+     * @param matchResults - the results of completed matches
+     * @return a new instance of SportLeague
+     */
     public static SportLeague parse(List<String> matchResults){
         var output = new SportLeague();
 
@@ -22,12 +27,11 @@ public class SportLeague {
         return output;
     }
 
-    private void addMatch(SportMatch matchResult){
-        this.matches.add(matchResult);
-    }
-
     public int getMatchesCount() {
         return this.matches.size();
     }
 
+    private void addMatch(SportMatch matchResult){
+        this.matches.add(matchResult);
+    }
 }

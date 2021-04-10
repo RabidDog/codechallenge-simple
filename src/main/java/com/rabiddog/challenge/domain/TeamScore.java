@@ -1,8 +1,11 @@
 package com.rabiddog.challenge.domain;
 
+import lombok.Getter;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Getter
 public class TeamScore {
     private Team team;
     private int score;
@@ -10,14 +13,25 @@ public class TeamScore {
     private static final Pattern namePattern = Pattern.compile(".*\\s");
     private static final Pattern scorePattern = Pattern.compile("[0-9]+");
 
-    public static TeamScore createInstance(String name, int score){
+    /***
+     *
+     * @param team the team that the score applies to
+     * @param score the score of the team in the match
+     * @return a new instance of TeamScore
+     */
+    public static TeamScore createInstance(Team team, int score){
         var output = new TeamScore();
-        output.team = Team.createInstance(name);
+        output.team = team;
         output.score = score;
 
         return output;
     }
 
+    /***
+     *
+     * @param formattedString - formatted string to create the team score ("team score") eg ("home team 3")
+     * @return a new instance of TeamScore
+     */
     public static TeamScore parse(String formattedString) {
         formattedString = formattedString.trim();
 
@@ -35,9 +49,6 @@ public class TeamScore {
             score = Integer.parseInt(scoreMatcher.group(0).trim());
         }
 
-        return TeamScore.createInstance(name, score);
+        return TeamScore.createInstance(Team.createInstance(name), score);
     }
-
-    public Team getTeam(){return this.team;}
-    public int getScore(){return this.score;}
 }

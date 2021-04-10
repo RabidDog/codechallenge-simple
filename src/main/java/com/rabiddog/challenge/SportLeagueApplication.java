@@ -12,6 +12,7 @@ public class SportLeagueApplication {
     public static void main(String... args) {
         if (args.length != 1) {
             System.err.println("Please provide a path to the results file");
+            return;
         }
 
         var path = Paths.get(args[0]);
@@ -22,9 +23,9 @@ public class SportLeagueApplication {
         }
 
         try (var lines = Files.lines(path)) {
-            var list = lines.collect(Collectors.toList());
-            var league = SportLeague.parse(list);
-            league.getLeagueTable().printLeagueStandings(System.out);
+            SportLeague.parse(lines.collect(Collectors.toList()))
+                    .getLeagueTable()
+                    .printLeagueStandings(System.out);
         } catch (IOException e) {
             System.err.printf("There was a problem reading the file from the path %s%n", args[0]);
         }
