@@ -1,5 +1,6 @@
 package com.rabiddog.challenge.domain;
 
+import com.rabiddog.challenge.exceptions.StringParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,14 +27,14 @@ class SportLeagueTests {
     }
 
     @Test
-    void shouldCreateSportLeague(){
+    void shouldCreateSportLeague() throws StringParseException {
         var league = SportLeague.parse(resultsInput);
 
         assertEquals(5, league.getMatchesCount());
     }
 
     @Test
-    void shouldCreateLeagueStanding(){
+    void shouldCreateLeagueStanding() throws StringParseException {
         var league = SportLeague.parse(resultsInput);
 
         assertNotNull(league.getLeagueTable());

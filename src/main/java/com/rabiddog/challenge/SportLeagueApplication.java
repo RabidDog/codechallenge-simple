@@ -1,6 +1,7 @@
 package com.rabiddog.challenge;
 
 import com.rabiddog.challenge.domain.SportLeague;
+import com.rabiddog.challenge.exceptions.StringParseException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,6 +29,8 @@ public class SportLeagueApplication {
                     .printLeagueStandings(System.out);
         } catch (IOException e) {
             System.err.printf("There was a problem reading the file from the path %s", args[0]);
+        } catch (StringParseException e){
+            System.err.printf("There an error in the data inside file from the path %s", args[0]);
         }
 
     }

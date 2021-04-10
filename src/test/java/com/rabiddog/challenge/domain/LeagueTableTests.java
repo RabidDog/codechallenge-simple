@@ -1,5 +1,6 @@
 package com.rabiddog.challenge.domain;
 
+import com.rabiddog.challenge.exceptions.StringParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,14 +22,18 @@ class LeagueTableTests {
         var path = Paths.get(ClassLoader.getSystemResource("resultsinput.txt").toURI());
 
         Files.lines(path).forEach(match -> {
-            matches.add(SportMatch.parse(match));
+            try {
+                matches.add(SportMatch.parse(match));
+            } catch (StringParseException e) {
+                e.printStackTrace();
+            }
         });
 
 
     }
     @Test
     void shouldListLeagueStandingsByPoints(){
-        var league = LeagueTable.createInstance(matches);
+        var league = new LeagueTable(matches);
 
         var orderedStandings = league.getSortedLeagueStandings();
 
@@ -50,7 +55,7 @@ class LeagueTableTests {
 
     @Test
     void shouldFormatLeagueStandingStringForPrint(){
-        var league = LeagueTable.createInstance(matches);
+        var league = new LeagueTable(matches);
         var orderedStandings = league.getSortedLeagueStandings();
 
         assertEquals("Tarantulas, 6 pts", orderedStandings.get(0).printStanding());

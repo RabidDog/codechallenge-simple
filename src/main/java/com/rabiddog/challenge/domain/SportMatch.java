@@ -2,25 +2,26 @@ package com.rabiddog.challenge.domain;
 
 
 import com.rabiddog.challenge.exceptions.InvalidStateException;
+import com.rabiddog.challenge.exceptions.StringParseException;
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 @Getter
 public class SportMatch {
     private TeamScore teamAScore;
     private TeamScore teamBScore;
 
-    /***
-     *
-     * @param teamAScore - first team that participated in the match
-     * @param teamBScore - second team that participated in the match
-     * @return a new instance of SportMatch
-     */
-    public static SportMatch createInstance(TeamScore teamAScore, TeamScore teamBScore){
-        var output = new SportMatch();
-        output.teamAScore = teamAScore;
-        output.teamBScore = teamBScore;
+    public SportMatch(
+            @NotNull final TeamScore teamAScore,
+            @NotNull final TeamScore teamBScore){
 
-        return output;
+        Objects.requireNonNull(teamAScore, "Team A Score cannot be null");
+        Objects.requireNonNull(teamBScore, "Team B Score cannot be null");
+
+        this.teamAScore = teamAScore;
+        this.teamBScore = teamBScore;
     }
 
     /***
@@ -28,12 +29,15 @@ public class SportMatch {
      * @param matchString - formatted string ("team name score, team name score") eg ("super team 1, other team 0")
      * @return a new instance of SportMatch
      */
-    public static SportMatch parse(String matchString) {
+    public static SportMatch parse(
+            @NotNull final String matchString) throws StringParseException {
+
+        Objects.requireNonNull(matchString, "Match String cannot be null");
+
         var split = matchString.split(",");
-        return SportMatch.createInstance(
+        return new SportMatch(
                 TeamScore.parse(split[0]),
-                TeamScore.parse(split[1])
-        );
+                TeamScore.parse(split[1]));
     }
 
     /***
@@ -41,7 +45,7 @@ public class SportMatch {
      * @return instance of the SportMatchResult containing the results of the match
      */
     public SportMatchResult getResult(){
-        return SportMatchResult.createInstance(
+        return new SportMatchResult(
                 teamAScore,
                 teamBScore
         );

@@ -2,6 +2,7 @@ package com.rabiddog.challenge.domain;
 
 import com.rabiddog.challenge.exceptions.InvalidStateException;
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,15 +20,12 @@ public class LeagueTable {
     private HashMap<String, LeagueStanding> standings = new HashMap<>();
     private List<LeagueStanding> sortedLeagueStandings;
 
-    /***
-     *
-     * @param matches - list of sports matches to use in the LeagueTable
-     * @return new instance of LeagueTable
-     */
-    public static LeagueTable createInstance(List<SportMatch> matches) {
-        var output = new LeagueTable();
-        output.processStandings(matches);
-        return output;
+    public LeagueTable(
+            @NotNull final List<SportMatch> matches
+    ){
+        Objects.requireNonNull(matches, "Match List cannot be null");
+
+        this.processStandings(matches);
     }
 
     /***
@@ -35,7 +33,12 @@ public class LeagueTable {
      * @param outputStream - the stream to print the league table standings output to
      * @throws IOException
      */
-    public void printLeagueStandings(OutputStream outputStream) throws IOException {
+    public void printLeagueStandings(
+            @NotNull final OutputStream outputStream
+    ) throws IOException {
+
+        Objects.requireNonNull(outputStream, "Output Stream cannot be null");
+
         for (int i = 0; i < this.sortedLeagueStandings.size(); i++) {
             try {
                 var position = i + 1;
@@ -55,7 +58,12 @@ public class LeagueTable {
         outputStream.close();
     }
 
-    private void processStandings(List<SportMatch> matches) {
+    private void processStandings(
+            @NotNull final List<SportMatch> matches
+    ) {
+
+        Objects.requireNonNull(matches, "The matches list cannot be null");
+
         matches.forEach(item -> {
             if (item.getResult().getOutcome() == ResultOutcome.TIE) {
                 addPoints(item.getTeamAScore(), POINTS_TIE);
@@ -86,13 +94,18 @@ public class LeagueTable {
                 .collect(Collectors.toList());
     }
 
-    private void addPoints(TeamScore teamScore, int points) {
+    private void addPoints(
+            @NotNull final TeamScore teamScore,
+            int points) {
+
+        Objects.requireNonNull(teamScore, "Team Score cannot be null");
+
         var key = teamScore.getTeam().getName();
 
         if (this.standings.containsKey(key)) {
             this.standings.get(key).addPoints(points);
         } else {
-            var standing = LeagueStanding.createInstance(teamScore.getTeam(), points);
+            var standing = new LeagueStanding(teamScore.getTeam(), points);
             standings.put(key, standing);
         }
     }

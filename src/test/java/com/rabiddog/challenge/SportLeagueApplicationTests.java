@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class SportLeagueApplicationTests {
 
@@ -14,7 +14,6 @@ class SportLeagueApplicationTests {
         var path = Paths.get(ClassLoader.getSystemResource("resultsinput.txt").toURI());
         String[] args = {path.toString()};
 
-        SportLeagueApplication.main(args);
-        assertTrue(true);
+        assertDoesNotThrow(() -> SportLeagueApplication.main(args));
     }
 }

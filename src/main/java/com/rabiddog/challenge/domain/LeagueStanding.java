@@ -1,6 +1,9 @@
 package com.rabiddog.challenge.domain;
 
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 @Getter
 public class LeagueStanding {
@@ -8,18 +11,14 @@ public class LeagueStanding {
     private Team team;
     private int points;
 
-    /***
-     *
-     * @param team - the team that the standing is for
-     * @param points- the number of points the team has
-     * @return - new instance of LeagueStanding
-     */
-    public static LeagueStanding createInstance(Team team, int points){
-        var output = new LeagueStanding();
-        output.team = team;
-        output.points = points;
+    public LeagueStanding(
+            @NotNull final Team team,
+            final int points){
 
-        return output;
+        Objects.requireNonNull(team, "Team cannot be null");
+
+        this.team = team;
+        this.points = points;
     }
 
     /***

@@ -1,21 +1,22 @@
 package com.rabiddog.challenge.domain;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+
 public class SportMatchResult {
     private TeamScore teamAScore;
     private TeamScore teamBScore;
 
-    /***
-     *
-     * @param teamAScore first team that participated in the match
-     * @param teamBScore second team that participated in the match
-     * @return a new instance of SportMatchResult
-     */
-    public static SportMatchResult createInstance(TeamScore teamAScore, TeamScore teamBScore) {
-        var output = new SportMatchResult();
-        output.teamAScore = teamAScore;
-        output.teamBScore = teamBScore;
+    public SportMatchResult(
+            @NotNull final TeamScore teamAScore,
+            @NotNull final TeamScore teamBScore) {
 
-        return output;
+        Objects.requireNonNull(teamAScore, "Team A Score cannot be null");
+        Objects.requireNonNull(teamBScore, "Team B Score cannot be null");
+
+        this.teamAScore = teamAScore;
+        this.teamBScore = teamBScore;
     }
 
     /***

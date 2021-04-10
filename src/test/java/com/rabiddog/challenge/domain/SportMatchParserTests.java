@@ -1,5 +1,6 @@
 package com.rabiddog.challenge.domain;
 
+import com.rabiddog.challenge.exceptions.StringParseException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +10,7 @@ class SportMatchParserTests {
     private final String matchString = "Lions 3, Snakes 2";
 
     @Test
-    void shouldParseSportMatch(){
+    void shouldParseSportMatch() throws StringParseException {
         var sportMatch = SportMatch.parse(matchString);
 
         assertNotNull(sportMatch.getTeamAScore());

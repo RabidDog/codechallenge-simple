@@ -1,6 +1,7 @@
 package com.rabiddog.challenge.domain;
 
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -9,16 +10,12 @@ public class Team implements Comparable<Team>{
 
     private String name;
 
-    /***
-     *
-     * @param name the name of the team
-     * @return a new instance of Team
-     */
-    public static Team createInstance(String name){
-        var output = new Team();
-        output.name = name;
+    public Team(
+            @NotNull final String name){
 
-        return output;
+        Objects.requireNonNull(name, "Team Name cannot be null");
+
+        this.name = name;
     }
 
     @Override
