@@ -1,21 +1,19 @@
-package com.rabiddog.challenger;
+package com.rabiddog.challenge.domain;
 
-import com.rabiddog.challenge.SportMatch;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class SportMatchParserTests {
+class SportMatchParserTests {
 
     private final String matchString = "Lions 3, Snakes 2";
 
     @Test
-    public void shouldParseSportMatch(){
+    void shouldParseSportMatch(){
         var sportMatch = SportMatch.parse(matchString);
 
-        assertTrue(sportMatch.getTeamAScore() != null);
-        assertTrue(sportMatch.getTeamBScore() != null);
+        assertNotNull(sportMatch.getTeamAScore());
+        assertNotNull(sportMatch.getTeamBScore());
 
         assertEquals("Lions", sportMatch.getTeamAScore().getTeam().getName());
         assertEquals(3, sportMatch.getTeamAScore().getScore());
