@@ -2,7 +2,8 @@
 
 ## Requirements
 Create a command-line application that accepts a file containing match results and 
-calculate the ranking table for a league. Once calculated this is to be printed in an ordered fashion to a terminal or console.
+calculate the ranking table for a league. Once calculated this is to be printed in an ordered fashion to a terminal or console  
+(the highest points to the lowest points).
 
 ## Input
 Match result data will be provided using a text file in the following format:
