@@ -39,7 +39,7 @@ public class TeamScore {
         var stringToParse = formattedString.trim();
 
         Matcher nameMatcher = namePattern.matcher(stringToParse);
-        var name = "";
+        String name;
 
         if (nameMatcher.find()) {
             name = nameMatcher.group(0).trim();
@@ -47,8 +47,8 @@ public class TeamScore {
             throw new StringParseException("The formatted string does not contain a name");
         }
 
-        var score = -1;
         Matcher scoreMatcher = scorePattern.matcher(stringToParse);
+        int score;
 
         if (scoreMatcher.find()) {
             score = Integer.parseInt(scoreMatcher.group(0).trim());

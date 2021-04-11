@@ -37,7 +37,7 @@ public class SportMatch {
 
         var split = matchString.split(",");
 
-        if(split.length != 2){
+        if (split.length != 2) {
             throw new StringParseException("The match provided must contain two teams and two scores");
         }
 

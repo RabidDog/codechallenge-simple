@@ -29,11 +29,10 @@ class LeagueTableTests {
                 e.printStackTrace();
             }
         });
-
-
     }
+
     @Test
-    void shouldListLeagueStandingsByPoints(){
+    void shouldListLeagueStandingsByPoints() {
 
         var league = new LeagueTable(matches);
 
@@ -56,7 +55,7 @@ class LeagueTableTests {
     }
 
     @Test
-    void shouldFormatLeagueStandingStringForPrint(){
+    void shouldFormatLeagueStandingStringForPrint() {
 
         var league = new LeagueTable(matches);
         var orderedStandings = league.getSortedLeagueStandings();
@@ -67,4 +66,5 @@ class LeagueTableTests {
         assertEquals("Snakes, 1 pt", orderedStandings.get(3).printStanding());
         assertEquals("Grouches, 0 pts", orderedStandings.get(4).printStanding());
     }
+
 }

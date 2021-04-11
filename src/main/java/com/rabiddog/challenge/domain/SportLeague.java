@@ -14,6 +14,12 @@ public class SportLeague {
     private List<SportMatch> matches = new ArrayList<>();
     private LeagueTable leagueTable;
 
+    /***
+     *
+     * @param matchResults - formatted string containing match results ("team a 3, team b 4")
+     * @return a new isntance of the SportLeague
+     * @throws StringParseException
+     */
     public static SportLeague parse(
             @NotNull final List<String> matchResults) throws StringParseException {
 

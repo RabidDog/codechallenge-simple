@@ -1,12 +1,13 @@
 package com.rabiddog.challenge;
 
 import com.rabiddog.challenge.domain.SportLeague;
+import com.rabiddog.challenge.exceptions.NoFileException;
 import com.rabiddog.challenge.exceptions.StringParseException;
+import com.rabiddog.challenge.services.ConsolePrintService;
+import com.rabiddog.challenge.services.readers.FileReaderService;
+import com.rabiddog.challenge.services.readers.FileReaderType;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.stream.Collectors;
 
 
 public class SportLeagueApplication {
@@ -17,26 +18,32 @@ public class SportLeagueApplication {
             return;
         }
 
-        var path = Paths.get(args[0]);
+        FileReaderService fileReaderService;
 
-        if (!Files.exists(path)) {
-            System.err.println("The provided file does not exist - please check the path");
-            return;
+        var fileLocation = args[0];
+
+        if (fileLocation.startsWith("http")) {
+            fileReaderService = FileReaderType.HTTP.getFileReaderService();
+        } else {
+            fileReaderService = FileReaderType.LOCAL.getFileReaderService();
         }
 
-        try (var lines = Files.lines(path)) {
-            SportLeague.parse(lines.collect(Collectors.toList()))
+        try {
+            SportLeague.parse(fileReaderService.readAllLines(fileLocation))
                     .getLeagueTable()
                     .printLeagueStandings(System.out);
             System.out.println();
         } catch (IOException e) {
-            System.err.printf("There was a problem reading the file from the path %s", args[0]);
-            System.err.println();
+            ConsolePrintService.printError(String.format("There was a problem reading the file from the path %s", fileLocation));
+            ConsolePrintService.printNestedError(e);
+            e.printStackTrace();
         } catch (StringParseException e) {
-            System.err.printf("There is an error in the data inside file from the path %s", args[0]);
-            System.err.println();
-            System.err.printf("Nested error is '%s'", e.getMessage());
-            System.err.println();
+            ConsolePrintService.printError(String.format("There is an error with data inside file from the path %s", fileLocation));
+            ConsolePrintService.printNestedError(e);
+        } catch (NoFileException e) {
+            ConsolePrintService.printError(
+                    String.format("There is no file located at %s", fileLocation)
+            );
         }
     }
 }
