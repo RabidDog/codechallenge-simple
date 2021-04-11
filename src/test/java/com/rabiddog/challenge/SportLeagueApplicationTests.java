@@ -11,6 +11,7 @@ class SportLeagueApplicationTests {
 
     @Test
     void shouldReadInputFile() throws URISyntaxException {
+
         var path = Paths.get(ClassLoader.getSystemResource("resultsinput.txt").toURI());
         String[] args = {path.toString()};
 

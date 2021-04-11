@@ -10,15 +10,15 @@ import java.util.regex.Pattern;
 
 @Getter
 public class TeamScore {
-    private Team team;
-    private int score;
 
     private static final Pattern namePattern = Pattern.compile(".*\\s");
     private static final Pattern scorePattern = Pattern.compile("[0-9]+");
+    private Team team;
+    private int score;
 
     public TeamScore(
             @NotNull final Team team,
-            final int score){
+            final int score) {
 
         Objects.requireNonNull(team, "Team cannot be null");
 
@@ -41,18 +41,18 @@ public class TeamScore {
         Matcher nameMatcher = namePattern.matcher(stringToParse);
         var name = "";
 
-        if(nameMatcher.find()){
+        if (nameMatcher.find()) {
             name = nameMatcher.group(0).trim();
-        }else{
+        } else {
             throw new StringParseException("The formatted string does not contain a name");
         }
 
         var score = -1;
         Matcher scoreMatcher = scorePattern.matcher(stringToParse);
 
-        if(scoreMatcher.find()){
+        if (scoreMatcher.find()) {
             score = Integer.parseInt(scoreMatcher.group(0).trim());
-        }else{
+        } else {
             throw new StringParseException("The formatted string does not contain a score");
         }
 

@@ -10,6 +10,7 @@ import java.util.Objects;
 
 @Getter
 public class SportLeague {
+
     private List<SportMatch> matches = new ArrayList<>();
     private LeagueTable leagueTable;
 
@@ -20,7 +21,7 @@ public class SportLeague {
 
         var output = new SportLeague();
 
-        for(var matchResult : matchResults){
+        for (var matchResult : matchResults) {
             output.addMatch(SportMatch.parse(matchResult));
         }
 
@@ -34,7 +35,7 @@ public class SportLeague {
     }
 
     private void addMatch(
-            @NotNull final SportMatch matchResult){
+            @NotNull final SportMatch matchResult) {
 
         Objects.requireNonNull(matchResult, "Match result cannot be null");
 

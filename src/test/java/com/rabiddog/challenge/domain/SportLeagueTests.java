@@ -21,6 +21,7 @@ class SportLeagueTests {
 
     @BeforeEach
     public void setup() throws IOException, URISyntaxException {
+
         var path = Paths.get(ClassLoader.getSystemResource("resultsinput.txt").toURI());
 
         resultsInput = Files.lines(path).collect(Collectors.toList());
@@ -28,6 +29,7 @@ class SportLeagueTests {
 
     @Test
     void shouldCreateSportLeague() throws StringParseException {
+
         var league = SportLeague.parse(resultsInput);
 
         assertEquals(5, league.getMatchesCount());
@@ -35,6 +37,7 @@ class SportLeagueTests {
 
     @Test
     void shouldCreateLeagueStanding() throws StringParseException {
+
         var league = SportLeague.parse(resultsInput);
 
         assertNotNull(league.getLeagueTable());

@@ -19,6 +19,7 @@ class LeagueTableTests {
 
     @BeforeEach
     public void setup() throws IOException, URISyntaxException {
+
         var path = Paths.get(ClassLoader.getSystemResource("resultsinput.txt").toURI());
 
         Files.lines(path).forEach(match -> {
@@ -33,6 +34,7 @@ class LeagueTableTests {
     }
     @Test
     void shouldListLeagueStandingsByPoints(){
+
         var league = new LeagueTable(matches);
 
         var orderedStandings = league.getSortedLeagueStandings();
@@ -55,6 +57,7 @@ class LeagueTableTests {
 
     @Test
     void shouldFormatLeagueStandingStringForPrint(){
+
         var league = new LeagueTable(matches);
         var orderedStandings = league.getSortedLeagueStandings();
 

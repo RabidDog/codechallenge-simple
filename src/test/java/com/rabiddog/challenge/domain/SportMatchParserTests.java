@@ -11,6 +11,7 @@ class SportMatchParserTests {
 
     @Test
     void shouldParseSportMatch() throws StringParseException {
+
         var sportMatch = SportMatch.parse(matchString);
 
         assertNotNull(sportMatch.getTeamAScore());

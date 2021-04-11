@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 
 public class SportLeagueApplication {
+
     public static void main(String... args) {
         if (args.length != 1) {
             System.err.println("Please provide a path to the results file");
@@ -27,11 +28,15 @@ public class SportLeagueApplication {
             SportLeague.parse(lines.collect(Collectors.toList()))
                     .getLeagueTable()
                     .printLeagueStandings(System.out);
+            System.out.println();
         } catch (IOException e) {
             System.err.printf("There was a problem reading the file from the path %s", args[0]);
-        } catch (StringParseException e){
-            System.err.printf("There an error in the data inside file from the path %s", args[0]);
+            System.err.println();
+        } catch (StringParseException e) {
+            System.err.printf("There is an error in the data inside file from the path %s", args[0]);
+            System.err.println();
+            System.err.printf("Nested error is '%s'", e.getMessage());
+            System.err.println();
         }
-
     }
 }

@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class SportMatchResult {
+
     private TeamScore teamAScore;
     private TeamScore teamBScore;
 
@@ -23,8 +24,8 @@ public class SportMatchResult {
      *
      * @return the outcome of the match.
      */
-    public ResultOutcome getOutcome(){
-        if (teamAScore.getScore() == teamBScore.getScore()){
+    public ResultOutcome getOutcome() {
+        if (teamAScore.getScore() == teamBScore.getScore()) {
             return ResultOutcome.TIE;
         } else {
             return ResultOutcome.DECISIVE;

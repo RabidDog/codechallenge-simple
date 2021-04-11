@@ -21,8 +21,7 @@ public class LeagueTable {
     private List<LeagueStanding> sortedLeagueStandings;
 
     public LeagueTable(
-            @NotNull final List<SportMatch> matches
-    ){
+            @NotNull final List<SportMatch> matches) {
         Objects.requireNonNull(matches, "Match List cannot be null");
 
         this.processStandings(matches);
@@ -34,8 +33,7 @@ public class LeagueTable {
      * @throws IOException
      */
     public void printLeagueStandings(
-            @NotNull final OutputStream outputStream
-    ) throws IOException {
+            @NotNull final OutputStream outputStream) throws IOException {
 
         Objects.requireNonNull(outputStream, "Output Stream cannot be null");
 
@@ -59,8 +57,7 @@ public class LeagueTable {
     }
 
     private void processStandings(
-            @NotNull final List<SportMatch> matches
-    ) {
+            @NotNull final List<SportMatch> matches) {
 
         Objects.requireNonNull(matches, "The matches list cannot be null");
 

@@ -12,6 +12,7 @@ class TeamScoreParserTests {
 
     @Test
     void shouldParseTeamScore() throws StringParseException {
+
         var teamScore = TeamScore.parse(teamScoreString);
 
         assertEquals("FC Lions", teamScore.getTeam().getName());
@@ -20,6 +21,7 @@ class TeamScoreParserTests {
 
     @Test
     void shouldParseTeamScoreWeakString() throws StringParseException {
+
         var teamScore = TeamScore.parse(teamScoreStringWeakFormat);
 
         assertEquals("Lions", teamScore.getTeam().getName());

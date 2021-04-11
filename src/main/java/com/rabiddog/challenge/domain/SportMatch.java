@@ -10,12 +10,13 @@ import java.util.Objects;
 
 @Getter
 public class SportMatch {
+
     private TeamScore teamAScore;
     private TeamScore teamBScore;
 
     public SportMatch(
             @NotNull final TeamScore teamAScore,
-            @NotNull final TeamScore teamBScore){
+            @NotNull final TeamScore teamBScore) {
 
         Objects.requireNonNull(teamAScore, "Team A Score cannot be null");
         Objects.requireNonNull(teamBScore, "Team B Score cannot be null");
@@ -35,6 +36,11 @@ public class SportMatch {
         Objects.requireNonNull(matchString, "Match String cannot be null");
 
         var split = matchString.split(",");
+
+        if(split.length != 2){
+            throw new StringParseException("The match provided must contain two teams and two scores");
+        }
+
         return new SportMatch(
                 TeamScore.parse(split[0]),
                 TeamScore.parse(split[1]));
@@ -44,7 +50,7 @@ public class SportMatch {
      *
      * @return instance of the SportMatchResult containing the results of the match
      */
-    public SportMatchResult getResult(){
+    public SportMatchResult getResult() {
         return new SportMatchResult(
                 teamAScore,
                 teamBScore
@@ -58,8 +64,8 @@ public class SportMatch {
      */
     public TeamScore getWinner() throws InvalidStateException {
 
-        if(getResult().getOutcome() == ResultOutcome.TIE){
-           throw new InvalidStateException("The results are a tie");
+        if (getResult().getOutcome() == ResultOutcome.TIE) {
+            throw new InvalidStateException("The results are a tie");
         }
 
         return teamAScore.getScore() > teamBScore.getScore() ? teamAScore : teamBScore;
@@ -71,7 +77,7 @@ public class SportMatch {
      * @throws InvalidStateException thrown if the match is a draw/tie
      */
     public TeamScore getLoser() throws InvalidStateException {
-        if(getResult().getOutcome() == ResultOutcome.TIE){
+        if (getResult().getOutcome() == ResultOutcome.TIE) {
             throw new InvalidStateException("The results are a tie");
         }
 

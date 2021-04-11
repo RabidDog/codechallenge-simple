@@ -6,12 +6,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 @Getter
-public class Team implements Comparable<Team>{
+public class Team implements Comparable<Team> {
 
     private String name;
 
     public Team(
-            @NotNull final String name){
+            @NotNull final String name) {
 
         Objects.requireNonNull(name, "Team Name cannot be null");
 

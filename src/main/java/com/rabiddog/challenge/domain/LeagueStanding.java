@@ -13,7 +13,7 @@ public class LeagueStanding {
 
     public LeagueStanding(
             @NotNull final Team team,
-            final int points){
+            final int points) {
 
         Objects.requireNonNull(team, "Team cannot be null");
 
@@ -25,7 +25,7 @@ public class LeagueStanding {
      *
      * @return formatted string of the team name and the number of points they have
      */
-    public String printStanding(){
+    public String printStanding() {
         return String.format("%s, %s %s", this.team.getName(), this.points, this.getPointsString());
     }
 
@@ -37,7 +37,7 @@ public class LeagueStanding {
         this.points = this.points + pointsToAdd;
     }
 
-    private String getPointsString(){
-        return this.points == 1 ? "pt" :  "pts";
+    private String getPointsString() {
+        return this.points == 1 ? "pt" : "pts";
     }
 }
