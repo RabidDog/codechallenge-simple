@@ -16,13 +16,13 @@ Team 0, Team 0
 Where "Team" is the team name and "0" is the team score.
 
 ### Assumptions
-- A comma will be used to delimit the teams name and score for the match result. 
-- Whitespace is used to delimit the team name and score.
+- A comma will be used to delimit the teams name and score from the opposing team in the match result. 
+- Whitespace is used to delimit the team name from score.
 - Each match result will reside on a new line.
-- There can only be two teams per match result.
+- There can only be two teams and scores per match result.
 - The team name can include whitespace.
 - The score will always be numeric.
-- File will always be in a valid format _(While it has been assumed that the input file will always be well formatted, defensive programming techniques have been applied in the event that the file data is not well formatted.)_
+- The provided file will always be in a valid format _(While it has been assumed that the input file will always be well formatted, defensive programming techniques have been applied in the event that the file data is not well formatted.)_
 
 ## Business Rules
 
