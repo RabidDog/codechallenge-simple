@@ -1,7 +1,8 @@
 # League Standing Printer
 
 ## Requirements
-Create a command-line application that will calculate the ranking table for a league and print it in an ordered fashion to a terminal or console.
+Create a command-line application that accepts a file containing match results and 
+calculate the ranking table for a league. Once calculated this is to be printed in an ordered fashion to a terminal or console.
 
 ## Input
 Match result data will be provided using a text file in the following format:
@@ -11,22 +12,35 @@ Team 0, Team 0
 Team 0, Team 0
 ```
 
-Where "Team" is the team name and "0" is the team score. 
-A comma will be used to delimit the teams name and score for the match result. 
-Whitespace is used to delimit the team name and score.
+Where "Team" is the team name and "0" is the team score.
+
+### Assumptions
+- A comma will be used to delimit the teams name and score for the match result. 
+- Whitespace is used to delimit the team name and score.
+- Each match result will reside on a new line.
+- There can only be two teams per match result.
+- The team name can include whitespace.
+- The score will always be numeric.
+- File will always be in a valid format _(While it has been assumed that the input file will always be well formatted, defensive programming techniques have been applied in the event that the file data is not well formatted.)_
 
 ## Business Rules
 
-Points are allocated to the teams in the league based on the results of the matches they play. Points are allocated as follows:
+The match can result in two outcomes:
+- DECISIVE, there is a clear winner and loser
+- TIE, there is no clear winner or loser
+
+With the point allocation of each team in the match result being classified as follows:
+- A WIN is defined as the team that had the highest score in the match result entry.
+- A TIE is defined as both teams having an equal score in the match result entry.
+- A LOSS is defined as the team that had the lowest score in the match result entry.
+
+Points to be allocated for the match outcome:
 
 |Result |Points Allocation|
 |-------|----------------:|
 |WIN    |3                |
 |TIE    |1                |
 |LOSS   |0                |
-
-While it has been stipulated that the input file will always be well formatted, defensive programming rules have been 
-applied in the event that the file data is not well formatted.
 
 ## Expected Output
 
