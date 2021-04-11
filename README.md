@@ -16,7 +16,7 @@ Team 0, Team 0
 Where "Team" is the team name and "0" is the team score.
 
 ### Assumptions
-- A comma will be used to delimit the teams name and score from the opposing team in the match result. 
+- A comma will be used to delimit the teams name and score from the opposing teams name and score in the match result. 
 - Whitespace is used to delimit the team name from score.
 - Each match result will reside on a new line.
 - There can only be two teams and scores per match result.
