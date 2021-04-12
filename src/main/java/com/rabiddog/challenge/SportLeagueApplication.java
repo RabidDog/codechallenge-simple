@@ -42,7 +42,7 @@ public class SportLeagueApplication {
             ConsolePrintService.printNestedError(e);
         } catch (NoFileException e) {
             ConsolePrintService.printError(
-                    String.format("There is no file located at %s", fileLocation)
+                    String.format("There is no file located at '%s'%n", fileLocation)
             );
         }
     }

@@ -22,6 +22,7 @@ public class LeagueTable {
 
     public LeagueTable(
             @NotNull final List<SportMatch> matches) {
+
         Objects.requireNonNull(matches, "Match List cannot be null");
 
         this.processStandings(matches);
@@ -81,13 +82,13 @@ public class LeagueTable {
     private void sortLeagueStandings() {
         var list = new ArrayList<>(standings.values());
 
-        Comparator<LeagueStanding> filter = Comparator
+        Comparator<LeagueStanding> leagueStandingComparator = Comparator
                 .comparing(LeagueStanding::getPoints, (s1, s2) -> s2 - s1)
                 .thenComparing(LeagueStanding::getTeam);
 
         sortedLeagueStandings = list
                 .stream()
-                .sorted(filter)
+                .sorted(leagueStandingComparator)
                 .collect(Collectors.toList());
     }
 
