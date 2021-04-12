@@ -44,11 +44,10 @@ public class LeagueTable {
                 var item = this.sortedLeagueStandings.get(i);
 
                 var outputString = String.format(
-                        "%s. %s", position, item.printStanding()
+                        "%s. %s%n", position, item.printStanding()
                 );
 
                 outputStream.write(outputString.getBytes(StandardCharsets.UTF_8));
-                outputStream.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
             } catch (IOException e) {
                 e.printStackTrace();
             }
